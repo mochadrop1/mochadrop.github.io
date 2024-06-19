@@ -31,7 +31,7 @@ internal class Program
         while (true)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("And what kind of arrowhead would you like to use?  I can use Steel, Wood, or Obsidian. ");
+            Console.Write("\nAnd what kind of arrowhead would you like to use?  I can use Steel, Wood, or Obsidian. ");
             string head = Console.ReadLine().ToLower();
             if (head == "steel" || head == "wood" || head == "obsidian")
             {
@@ -49,7 +49,7 @@ internal class Program
         while (true)
         {
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("And what fletching style would you like? I can do plastic, goose feathers or turkey feathers. ");
+            Console.Write("\nAnd what fletching style would you like? I can do plastic, goose feathers or turkey feathers. ");
             string fletchingType = Console.ReadLine().ToLower();
             if (fletchingType == "plastic" || fletchingType == "goose feathers" || fletchingType == "turkey feathers")
             {
@@ -65,7 +65,7 @@ internal class Program
         // 
         Arrow a = new Arrow(arrowRecipe.head, arrowRecipe.shaft, arrowRecipe.tail);
         float cost = a.GetCost();
-        Console.WriteLine($"The cost of this arrow is {cost} gold.");
+        Console.WriteLine($"\nThe cost of this arrow is {cost} gold.");
         Console.ReadLine();
     }
 
