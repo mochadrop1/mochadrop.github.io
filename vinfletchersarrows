@@ -1,0 +1,101 @@
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        // Initializing
+        (float shaft, string head, string tail) arrowRecipe = (60, "wood", "plastic");
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("Vin Fletcher's bespoke arrows");
+       
+       // Get shaft length
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("\nArrow length? (between 60 and 100 cm): ");
+            float arrowLength = Convert.ToSingle(Console.ReadLine());
+            if (arrowLength >=60 && arrowLength <= 100 )
+            {
+                arrowRecipe.shaft = arrowLength;
+                break;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("*Please provide a length between 60 and 100 cm.*");
+            }
+        }
+
+        // Get arrowhead type
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("\nWhat kind of arrowhead? (steel, wood, obsidian): ");
+            string head = Console.ReadLine().ToLower();
+            if (head == "steel" || head == "wood" || head == "obsidian")
+            {
+                arrowRecipe.head = head;
+                break;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("*Please limit yourself to the given options.*");
+            }
+        }
+
+        // Get fletching type
+        while (true)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("\nFletching style? (plastic, goose feathers, turkey feathers): ");
+            string fletchingType = Console.ReadLine().ToLower();
+            if (fletchingType == "plastic" || fletchingType == "goose feathers" || fletchingType == "turkey feathers")
+            {
+                arrowRecipe.tail = fletchingType;
+                break;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("*Please limit yourself to the given options.*");
+            }
+        }
+              
+        // Create class and display cost
+        Arrow a = new Arrow(arrowRecipe.head, arrowRecipe.shaft, arrowRecipe.tail);
+        float cost = a.GetCost();
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine($"\nThe cost of this arrow is {cost} gold.");
+        Console.ReadLine();
+    }
+
+    class Arrow
+    {
+        string arrowHead; float shaftLength; string fletchingType;
+        public Arrow(string arrowhead, float shaftlength, string fletchingtype)
+        {
+            arrowHead = arrowhead;
+            shaftLength = shaftlength;
+            fletchingType = fletchingtype;
+        }
+        
+        public float GetCost()
+        {
+            float value1 = 0;
+            if (arrowHead == "steel") {value1 = 10;}
+            else if (arrowHead == "wood") {value1 = 3;}
+            else if (arrowHead == "obsidian") {value1 = 5;}
+
+            float value2 = 0;
+            if (fletchingType == "plastic") {value2 = 10;}
+            else if (fletchingType == "turkey feathers") {value2 = 5;}
+            else if (fletchingType == "goose feathers") {value2 = 3;}
+            
+            float value3 = shaftLength * 0.05f;
+
+            float totalCost = value1 + value2 + value3;
+            return totalCost;
+        }
+    }
+}
